@@ -21,7 +21,7 @@ def create_header():
   return { 'User-Agent': f'Mozilla/{moz}.0 (Linux; Android {android}; {generate_model()}) AppleWebKit/{generate_version()} (KHTML, like Gecko) Version/{ver}.0 Chrome/{generate_version()} Mobile Safari/{generate_version()}' }
 
 def fetch_proxy():
-  req = requests.get('https://proxylist.geonode.com/api/proxy-list?google=false&protocols=https&limit=5&page=1&sort_by=latency&sort_type=asc')
+  req = requests.get('https://proxylist.geonode.com/api/proxy-list?google=true&protocols=https&limit=5&page=1&sort_by=latency&sort_type=asc')
   res = json.loads(req.text)['data']
   return { 'https': [x['ip'] for x in res] }
 
