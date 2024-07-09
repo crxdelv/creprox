@@ -33,6 +33,8 @@ Proxies (5) are obtained from [geonode](https://geonode.com/free-proxy-list) wit
 
 ### Migration
 
+The latest version of creprox is designed to temporarily accept deprecated format but the protocol will always be secured.
+
 Legacy version of creprox uses this format:
 
 ```http
@@ -41,6 +43,4 @@ GET https://creprox.vercel.app/https:/example.com
 
 Where you need to provide the protocol `https:` or `http:`.
 
-To migrate to the new format, you need to remove the protocol `https:` or `http:`.
-
-By default, latest creprox version is designed to accept deprecated format but the protocol will always be secure.
+To migrate to the new format, which is strongly suggested, you need to remove the protocol `https:` or `http:`.
