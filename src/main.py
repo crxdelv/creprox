@@ -27,9 +27,12 @@ def fetch_proxy():
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
+    location = self.path.split('/')[1]
+    if(location in ['https:', 'http:']):
+      location = self.path.split('/')[2]
     result = None
     try:
-      req = requests.get('https:/' + self.path, proxies=fetch_proxy(), headers=create_header())
+      req = requests.get('https://' + location, proxies=fetch_proxy(), headers=create_header())
       self.send_response(200)
       result = req.text
     except Exception as e:
