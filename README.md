@@ -25,7 +25,7 @@ The user agent generator uses android mobile format:
 
 ### Proxy
 
-Proxies are obtained from [geonode](https://geonode.com/free-proxy-list) with the following filters:
+Proxies (5) are obtained from [geonode](https://geonode.com/free-proxy-list) with the following filters:
 
 1. HTTPS protocol
 2. Google passed
