@@ -34,7 +34,7 @@ class handler(BaseHTTPRequestHandler):
       location = self.path.split('/')[1:]
     result = None
     try:
-      req = requests.get('https://' + location, proxies=fetch_proxy(), headers=create_header())
+      req = requests.get('https://' + '/'.join(location), proxies=fetch_proxy(), headers=create_header())
       self.send_response(200)
       result = req.text
     except Exception as e:
