@@ -27,9 +27,9 @@ def fetch_proxy():
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
-    location = self.path.split('/')[1]
+    location = self.path.split('/')[1:]
     if(location in ['https:', 'http:']):
-      location = self.path.split('/')[2]
+      location = self.path.split('/')[2:]
     result = None
     try:
       req = requests.get('https://' + location, proxies=fetch_proxy(), headers=create_header())
