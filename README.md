@@ -19,13 +19,13 @@ Which will be transformed into a URL with `https` protocol.
 
 ### User Agent
 
-The user agent generator uses android mobile format:
+User agents follow the format of an android device:
 
 > Mozilla/<kbd>1</kbd>.0 (Linux; Android <kbd>2</kbd>; <kbd>3</kbd>) AppleWebKit/<kbd>4</kbd> (KHTML, like Gecko) Version/<kbd>5</kbd>.0 Chrome/<kbd>6</kbd> Mobile Safari/<kbd>7</kbd>
 
 ### Proxy
 
-Proxies (5) are obtained from [geonode](https://geonode.com/free-proxy-list) with the following filters:
+Five proxies are obtained from [geonode](https://geonode.com/free-proxy-list) with the following filters:
 
 1. HTTPS protocol
 2. Google passed
