@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler
-import requests, json, random, string, traceback
+import requests, random, string, traceback
 
 def generate_version():
   ver = []
@@ -21,18 +21,18 @@ def create_header():
   return { 'User-Agent': f'Mozilla/{moz}.0 (Linux; Android {android}; {generate_model()}) AppleWebKit/{generate_version()} (KHTML, like Gecko) Version/{ver}.0 Chrome/{generate_version()} Mobile Safari/{generate_version()}' }
 
 def fetch_proxy():
-  req = requests.get('https://proxylist.geonode.com/api/proxy-list?limit=5&page=1&sort_by=latency&sort_type=asc')
-  res = json.loads(req.text)['data'][0]['ip']
-  return res
+  ports = []
+  for i in range(4):
+    ports.append(str(random.randint(0, 255)))
+  return '.'.join(ports)
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
     result = None
     try:
-      proxy = fetch_proxy()
       req = requests.get('https:/' + self.path, headers=create_header())
       self.send_response(200)
-      self.send_header('Origin', proxy)
+      self.send_header('Origin', fetch_proxy())
       result = req.text
     except:
       e = traceback.format_exc()
