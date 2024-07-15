@@ -13,19 +13,12 @@ def create_header():
   ver = random.randint(3, 5)
   return { 'User-Agent': f'Mozilla/{moz}.0 (Linux; Android {android}; K) AppleWebKit/{generate_version()} (KHTML, like Gecko) Version/{ver}.0 Chrome/{generate_version()} Mobile Safari/{generate_version()}' }
 
-def fetch_proxy():
-  ports = []
-  for i in range(4):
-    ports.append(str(random.randint(0, 255)))
-  return '.'.join(ports)
-
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
     result = None
     try:
       req = requests.get('https:/' + self.path, headers=create_header())
       self.send_response(200)
-      self.send_header('origin', fetch_proxy())
       result = req.text
     except:
       e = traceback.format_exc()
