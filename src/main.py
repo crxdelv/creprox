@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler
-import requests, random, string, traceback
+import requests, random, traceback
 
 def generate_version():
   ver = []
@@ -7,18 +7,11 @@ def generate_version():
     ver.append(str(random.randint(100, 999)))
   return '.'.join(ver)
 
-def generate_model():
-  name = ''
-  for i in range(3):
-    name += random.choice(string.ascii_uppercase)
-  name += str(random.randint(100, 999))
-  return name
-
 def create_header():
   moz = random.randint(3, 5)
   android = random.randint(10, 14)
   ver = random.randint(3, 5)
-  return { 'User-Agent': f'Mozilla/{moz}.0 (Linux; Android {android}; {generate_model()}) AppleWebKit/{generate_version()} (KHTML, like Gecko) Version/{ver}.0 Chrome/{generate_version()} Mobile Safari/{generate_version()}' }
+  return { 'User-Agent': f'Mozilla/{moz}.0 (Linux; Android {android}; K) AppleWebKit/{generate_version()} (KHTML, like Gecko) Version/{ver}.0 Chrome/{generate_version()} Mobile Safari/{generate_version()}' }
 
 def fetch_proxy():
   ports = []
