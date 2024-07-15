@@ -23,14 +23,16 @@ def create_header():
 def fetch_proxy():
   req = requests.get('https://proxylist.geonode.com/api/proxy-list?limit=5&page=1&sort_by=latency&sort_type=asc')
   res = json.loads(req.text)['data'][0]['ip']
-  return { 'https': 'https://' + res }
+  return res
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
     result = None
     try:
-      req = requests.get('https:/' + self.path, proxies=fetch_proxy(), headers=create_header())
+      proxy = fetch_proxy()
+      req = requests.get('https:/' + self.path, headers=create_header())
       self.send_response(200)
+      self.send_header('Origin', proxy)
       result = req.text
     except:
       e = traceback.format_exc()
