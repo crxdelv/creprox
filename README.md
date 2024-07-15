@@ -1,11 +1,14 @@
 ## creprox :ninja:
-REST-ly perform an HTTP GET request with rotating proxy and user agents.
+REST-ly perform an HTTP GET request with rotating ~~proxy~~ and user agents.
 
 ```http
 GET https://creprox.vercel.app/httpbin.org/get
 Origin: 34.231.247.92
 User-Agent: Mozilla/5.0 (Linux; Android 13; EPA642) AppleWebKit/145 (KHTML, like Gecko) Version/4.0 Chrome/348.300.751 Mobile Safari/945.892.561
 ```
+
+> [!WARNING]
+> Due to the continuous connection gateway errors, rotating proxy has been disabled.
 
 ### Usage
 
