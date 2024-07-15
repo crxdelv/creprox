@@ -42,3 +42,5 @@ class handler(BaseHTTPRequestHandler):
     self.send_header('Access-Control-Allow-Origin', '*')
     self.end_headers()
     self.wfile.write(result.encode('utf-8'))
+
+print(fetch_proxy())
