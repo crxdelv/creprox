@@ -21,9 +21,8 @@ def create_header():
   return { 'User-Agent': f'Mozilla/{moz}.0 (Linux; Android {android}; {generate_model()}) AppleWebKit/{generate_version()} (KHTML, like Gecko) Version/{ver}.0 Chrome/{generate_version()} Mobile Safari/{generate_version()}' }
 
 def fetch_proxy():
-  req = requests.get('http://www.pubproxy.com/api/proxy?speed=1&https=true')
-  ip = req.json()['data'][0]['ip']
-  return { 'https': [ip] }
+  req = requests.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=https&timeout=1000&country=all&ssl=all&anonymity=all')
+  return { 'https': req.text.split('\n') }
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
