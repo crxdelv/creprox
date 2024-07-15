@@ -32,7 +32,7 @@ class handler(BaseHTTPRequestHandler):
     try:
       req = requests.get('https:/' + self.path, headers=create_header())
       self.send_response(200)
-      self.send_header('Origin', fetch_proxy())
+      self.send_header('origin', fetch_proxy())
       result = req.text
     except:
       e = traceback.format_exc()
@@ -42,5 +42,3 @@ class handler(BaseHTTPRequestHandler):
     self.send_header('Access-Control-Allow-Origin', '*')
     self.end_headers()
     self.wfile.write(result.encode('utf-8'))
-
-print(fetch_proxy())
