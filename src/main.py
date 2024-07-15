@@ -21,8 +21,9 @@ def create_header():
   return { 'User-Agent': f'Mozilla/{moz}.0 (Linux; Android {android}; {generate_model()}) AppleWebKit/{generate_version()} (KHTML, like Gecko) Version/{ver}.0 Chrome/{generate_version()} Mobile Safari/{generate_version()}' }
 
 def fetch_proxy():
-  req = requests.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=https&timeout=10000&country=all&ssl=all&anonymity=all')
-  return { 'https': 'https://' + req.text.split('\n')[0][:1] }
+  req = requests.get('https://proxylist.geonode.com/api/proxy-list?limit=5&page=1&sort_by=latency&sort_type=asc')
+  res = json.loads(req.text)['data']
+  return { 'https': [x['ip'] for x in res] }
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
