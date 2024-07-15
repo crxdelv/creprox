@@ -21,7 +21,7 @@ def create_header():
   return { 'User-Agent': f'Mozilla/{moz}.0 (Linux; Android {android}; {generate_model()}) AppleWebKit/{generate_version()} (KHTML, like Gecko) Version/{ver}.0 Chrome/{generate_version()} Mobile Safari/{generate_version()}' }
 
 def fetch_proxy():
-  req = requests.get('https://pubproxy.com/api/proxy?speed=1&https=true')
+  req = requests.get('http://www.pubproxy.com/api/proxy?speed=1&https=true')
   ip = req.json()['data'][0]['ip']
   return { 'https': [ip] }
 
