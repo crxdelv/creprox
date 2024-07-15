@@ -5,7 +5,7 @@ REST-ly perform an HTTP GET request with rotating user agents.
 GET https://creprox.vercel.app/httpbin.org/get
 ```
 
-> [!WARNING]
+> [!NOTE]
 > Due to the continuous gateway errors, rotating proxy has been removed.
 
 ### Usage
