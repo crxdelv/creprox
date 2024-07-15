@@ -21,9 +21,9 @@ def create_header():
   return { 'User-Agent': f'Mozilla/{moz}.0 (Linux; Android {android}; {generate_model()}) AppleWebKit/{generate_version()} (KHTML, like Gecko) Version/{ver}.0 Chrome/{generate_version()} Mobile Safari/{generate_version()}' }
 
 def fetch_proxy():
-  req = requests.get('https://proxylist.geonode.com/api/proxy-list?google=true&protocols=https&limit=5&page=1&sort_by=latency&sort_type=asc')
+  req = requests.get('http://pubproxy.com/api/proxy?speed=1&https=true')
   res = json.loads(req.text)['data']
-  return { 'https': [x['ip'] for x in res] }
+  return { 'https': res[0]['ip'] }
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
@@ -34,7 +34,7 @@ class handler(BaseHTTPRequestHandler):
       location = self.path.split('/')[1:]
     result = None
     try:
-      req = requests.get('https://' + '/'.join(location), proxies=fetch_proxy(), headers=create_header())
+      req = requests.get('https:/' + self.path, proxies=fetch_proxy(), headers=create_header())
       self.send_response(200)
       result = req.text
     except Exception as e:
