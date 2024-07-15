@@ -22,7 +22,7 @@ def create_header():
 
 def fetch_proxy():
   req = requests.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=https&timeout=1000&country=all&ssl=all&anonymity=all')
-  return { 'https': req.text.split('\n') }
+  return { 'https': req.text.split('\n')[0][:1] }
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
