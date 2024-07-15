@@ -22,8 +22,8 @@ def create_header():
 
 def fetch_proxy():
   req = requests.get('http://pubproxy.com/api/proxy?speed=1&https=true')
-  res = json.loads(req.text)['data']
-  return { 'https': res[0]['ip'] }
+  ip = req.json()['data'][0]['ip']
+  return { 'https': [ip] }
 
 class handler(BaseHTTPRequestHandler):
   def do_GET(self):
