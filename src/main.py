@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler
-import requests, json, random, string
+import requests, json, random, string, traceback
 
 def generate_version():
   ver = []
@@ -32,7 +32,8 @@ class handler(BaseHTTPRequestHandler):
       req = requests.get('https:/' + self.path, proxies=fetch_proxy(), headers=create_header())
       self.send_response(200)
       result = req.text
-    except Exception as e:
+    except:
+      e = traceback.format_exc()
       self.send_response(500)
       result = str(e)
     self.send_header('Content-Type', 'text/plain')
